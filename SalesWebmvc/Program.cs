@@ -1,6 +1,12 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using SalesWebmvc.Model;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+
 namespace SalesWebmvc
 {
     public class Program
@@ -9,7 +15,7 @@ namespace SalesWebmvc
         {
             var builder = WebApplication.CreateBuilder(args);
             builder.Services.AddDbContext<SalesWebmvcContext>(options =>
-                options.UseSqlServer(builder.Configuration.GetConnectionString("SalesWebmvcContext") ?? throw new InvalidOperationException("Connection string 'SalesWebmvcContext' not found.")));
+                options.UseMySql(builder.Configuration.GetConnectionString("SalesWebmvcContext"), new MySqlServerVersion("8.0.23")));//comando para executar o migration, e criar as tabelas apartir das classes.
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();

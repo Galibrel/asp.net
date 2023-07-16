@@ -23,6 +23,7 @@ namespace SalesWebmvc
 
             builder.Services.AddScoped<SeedingService>();//instanciando o serviço na injeção
             builder.Services.AddScoped<SellerService>();
+            builder.Services.AddScoped<DepartmentService>();
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();

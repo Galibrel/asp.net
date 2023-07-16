@@ -13,13 +13,15 @@ namespace SalesWebmvc.Models
 
         public string Email { get; set; }
 
+        [Display(Name = "Birth Date")]
+        [DataType(DataType.Date)]
         public DateTime birthDate { get; set; }
 
-        [Display(Name ="Birth Date")]
-        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString ="{0:F2}")]
+        [Display(Name = "Base Salary")]
         public double Salary { get; set; }
-
         
+
         public Department Department { get; set; }
 
         public int DepartmentId { get; set; }

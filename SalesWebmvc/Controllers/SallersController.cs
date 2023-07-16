@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using NuGet.Protocol;
 using SalesWebmvc.Models;
 using SalesWebmvc.Models.ViewModels;
@@ -45,12 +46,12 @@ namespace SalesWebmvc.Controllers
         {
             if (id == null)
             {
-                return RedirectToAction(nameof(Error), new { message = "Id not provided"});
+                return NotFound();
             }
             var obj = _sallersService.FindById(id.Value);
             if (obj == null)
             {
-                return RedirectToAction(nameof(Error), new { message = "Id not found" });
+                return NotFound();
             }
             return View(obj);
 
@@ -68,12 +69,12 @@ namespace SalesWebmvc.Controllers
         {
             if (id == null)
             {
-                return RedirectToAction(nameof(Error), new { message = "Id not provided" });
+                return NotFound(); 
             }
             var obj = _sallersService.FindById(id.Value);
             if (obj == null)
             {
-                return RedirectToAction(nameof(Error), new { message = "Id not found" });
+                return NotFound();
             }
             return View(obj);
 
@@ -123,13 +124,13 @@ namespace SalesWebmvc.Controllers
 
         public IActionResult Error(string message)
         {
-            var viewModel = new ErrorViewModel
+            var viewmodel = new ErrorViewModel
             {
-              
-                Message = message
+
+                Message = message,
                 RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier
             };
-            return View(viewModel);
+            return View(viewmodel);
         }
     }
 }

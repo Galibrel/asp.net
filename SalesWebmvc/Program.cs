@@ -51,7 +51,7 @@ namespace SalesWebmvc
                 seedingService.Seed(); // Chame o método responsável pela população dos dados
             }
 
-            var enUS = new CultureInfo("en-US");
+            var enUS = new CultureInfo("en-US");//cria uma lista de formatação com base na localidade
             var localizationOptions = new RequestLocalizationOptions
             {
                 DefaultRequestCulture = new RequestCulture(enUS),

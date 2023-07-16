@@ -9,15 +9,20 @@ namespace SalesWebmvc.Models
     {
         public int Id { get; set; }
 
+        [Required(ErrorMessage = "{0} required")]//torna nome obrigatorio
         public string Name { get; set; }
 
+        [Required(ErrorMessage = "{0} required")]
+        [Display(Name = "E-mail")]
         public string Email { get; set; }
 
-        [Display(Name = "Birth Date")]
-        [DataType(DataType.Date)]
+        [Required(ErrorMessage = "{0} required")]
+        [Display(Name = "Birth Date")]//altera o nome
+        [DataType(DataType.Date)]//configura a data para tirar hora
         public DateTime birthDate { get; set; }
 
-        [DisplayFormat(DataFormatString ="{0:F2}")]
+        [Required(ErrorMessage = "{0} required")]
+        [DisplayFormat(DataFormatString ="{0:F2}")]//arredonda as casa decimal
         [Display(Name = "Base Salary")]
         public double Salary { get; set; }
         

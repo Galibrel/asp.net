@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 
 namespace SalesWebmvc.Models
@@ -14,8 +15,11 @@ namespace SalesWebmvc.Models
 
         public DateTime birthDate { get; set; }
 
+        [Display(Name ="Birth Date")]
+        [DataType(DataType.Date)]
         public double Salary { get; set; }
 
+        
         public Department Department { get; set; }
 
         public int DepartmentId { get; set; }

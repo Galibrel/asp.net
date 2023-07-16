@@ -3,6 +3,7 @@ using SalesWebmvc.Models;
 using System.Security.AccessControl;
 using System.Security.Permissions;
 using Microsoft.EntityFrameworkCore;
+using SalesWebmvc.Services.Exceptions;
 
 namespace SalesWebmvc.Services
 {
@@ -34,9 +35,26 @@ namespace SalesWebmvc.Services
         {
             var obj = _context.Saller.Find(id);
             _context.Saller.Remove(obj);
-            _context.SaveChanges(); 
+            _context.SaveChanges();
         }
 
-        
+        public void Update(Saller obj)
+        {
+            if (!_context.Saller.Any(x => x.Id == obj.Id))
+            {
+                throw new NotFoundException("Id not Found");
+            }
+            try
+            {
+                _context.Saller.Update(obj);
+                _context.SaveChanges();
+
+            }
+            catch(DbConcurrencyException ex)
+            {
+                throw new DbConcurrencyException(ex.Message);
+            }
+        }
+
     }
 }
